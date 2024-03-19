@@ -14,8 +14,10 @@ class RoadService(ServiceBase):
         worst_range = vehicle['range']['chargetrip_range']['worst']
 
         nb_charge = distance // worst_range
-        total_time_charge = nb_charge * vehicle['connectors'][0]['time']
-        total_time = time + total_time_charge
+        total_time_charge = nb_charge * int(vehicle['connectors'][0]['time'])
+        total_time = time + (total_time_charge * 60)
+
+        print(total_time)
 
         total_hours, total_minutes, total_seconds = to_hours_minutes_seconds(total_time)
         hours, minutes, seconds = to_hours_minutes_seconds(time)
